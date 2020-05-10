@@ -3,12 +3,12 @@ import { Link } from '@reach/router'
 export default function Navbar() {
   return (
     <>
-      <nav className=" bg-blue-500 p-6 shadow-lg">
+      <nav className=" bg-blue-500 p-6 shadow-lg fixed top-0 w-full">
         <div className=" flex items-center container m-auto justify-between flex-wrap">
           <div className="">
-            <h1 className="text-3xl text-white">
+            <Link to="/" className="text-3xl text-white">
               Bater
-            </h1>
+            </Link>
           </div>
           <div className="lg:">
 

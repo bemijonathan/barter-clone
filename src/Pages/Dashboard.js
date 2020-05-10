@@ -7,7 +7,7 @@ export default function Dashboard(props) {
     return (
         <div>
             <Navbar />
-            <section className="container flex m-auto mt-20">
+            <section className="container flex m-auto my-20 py-20">
                 <SideNav />
                 <div className="flex-1">
                     {props.children}
