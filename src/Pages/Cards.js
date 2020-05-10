@@ -48,7 +48,6 @@ export default function Cards() {
                         <p>{e.validthru}</p>
                     </div>
                 </div>
-
             </div>
         )
     })
@@ -59,7 +58,7 @@ export default function Cards() {
             <div className="flex items-center justify-between w-full">
                 <div>
                     <h1 className="font-bold text-3xl"> Cards </h1>
-                    <p className="text-xl" style={{ 'max-width': '700px' }}> Just like you would your regular cards, you can pay for your shopping online with your Barter card.</p>
+                    <p className="text-xl" style={{ 'maxWidth': '700px' }}> Just like you would your regular cards, you can pay for your shopping online with your Barter card.</p>
                 </div>
                 <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white"> Create New Card</button>
             </div>

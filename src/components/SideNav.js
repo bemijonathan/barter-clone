@@ -3,7 +3,7 @@ import { Link } from '@reach/router'
 import Airtime from './Airtime'
 
 
-export default function SideNav() {
+export default function SideNav({ props }) {
     const [navItems] = useState([
         {
             name: "Home",
@@ -36,6 +36,21 @@ export default function SideNav() {
             path: "/"
         }
     ])
+    console.log(props)
+
+
+    const NavLink = props => (
+        <Link
+            {...props}
+            getProps={({ isCurrent }) => {
+                return {
+                    className: isCurrent ? "activeNav" : ""
+
+                };
+            }}
+        />
+    );
+
 
 
     const nav = () => {
@@ -43,23 +58,22 @@ export default function SideNav() {
             return (
                 <div key={i}>
                     {i === 3 ?
-                        <div className="mb-4 py-3 px-5 rounded-lg cursor-pointer" onClick="">
+                        <div className="mb-4 py-3 px-5 rounded-lg cursor-pointer" onClick={() => props.hide(true)}>
                             <img src={'/images/' + e.image} alt="home" className="inline mr-3" /> {e.name}
                         </div>
 
-                        : <Link to={e.path}>
+                        : <NavLink to={e.path}>
                             <div className="mb-4 py-3 px-5 rounded-lg">
                                 <img src={'/images/' + e.image} alt="home" className="inline mr-3" /> {e.name}
                             </div>
-
-                        </Link>}
+                        </NavLink>}
                 </div>
             )
         })
     }
     return (
         <div className="w-1/6 position relative">
-            <Airtime />
+            {props.show ? <Airtime props={props.hide} /> : ""}
             <div className="fixed">
                 {nav()}
             </div>
