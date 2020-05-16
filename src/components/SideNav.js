@@ -13,7 +13,7 @@ export default function SideNav({ props }) {
         {
             path: "/dashboard/cards",
             image: "card.svg",
-            name: "Cards"
+            name: "wallet"
         },
         {
             name: "Transactions",

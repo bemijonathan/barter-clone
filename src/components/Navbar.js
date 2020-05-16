@@ -4,7 +4,7 @@ import SideNav from './SideNav';
 import {AirtimeContext} from '../context/airtimeContext'
 
 export default function Navbar() {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const hideBar = (e) => {
     if(e.target.classList.contains('bg-opacity-25')){
       setShow(false)
@@ -26,7 +26,7 @@ export default function Navbar() {
         <div className=" md:flex items-center container m-auto md:justify-between md:flex-wrap">
           <div className="">
             <Link to="/" className="text-3xl text-white">
-              Bater
+              Pi-coin
             </Link>
           </div>
           <div className="lg:">
@@ -44,7 +44,7 @@ export default function Navbar() {
         <div className=" md:flex items-center container m-auto md:justify-between md:flex-wrap">
           <div className="">
             <Link to="/" className="text-3xl text-blue-400">
-              Bater
+              Pi-coin
             </Link>
           </div>
           <div className="lg:">
