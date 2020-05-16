@@ -33,7 +33,7 @@ export default function Cards() {
     const cardList = cardDetails.map((e, i) => {
         return (
             <div key={i}
-                className={`mr-10 atm-card p-5 rounded-lg shadow-2xl text-white cursor-pointer
+                className={`md:mr-10 mb-3 md:mb-0 atm-card p-5 rounded-lg shadow-2xl text-white cursor-pointer
                     ${e.type === "Dollar" ? 'bg-yellow-600' : 'bg-blue-600'}`
                 } onClick={() => setCurrent(i)}>
                 <p> {e.name} </p>
@@ -55,7 +55,7 @@ export default function Cards() {
 
     return (
         <div>
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between w-full flex-wrap p-5 md:p-0">
                 <div>
                     <h1 className="font-bold text-3xl"> Cards </h1>
                     <p className="text-xl" style={{ 'maxWidth': '700px' }}> Just like you would your regular cards, you can pay for your shopping online with your Barter card.</p>
@@ -64,15 +64,15 @@ export default function Cards() {
             </div>
 
             <div>
-                <div className="flex my-10">
+                <div className="flex my-10 flex-wrap p-5 md:p-0">
                     {cardList}
                 </div>
             </div>
 
 
-            <section className="flex mt-5 -mx-10 items-start">
+            <section className="flex mt-5 -mx-10 items-start flex-wrap md:flex-no-wrap">
 
-                <div className="list-none w-1/2 shadow p-5 rounded-lg m-10">
+                <div className="list-none w-full md:w-1/2 shadow p-5 rounded-lg m-10">
                     <h1 className="text-2xl my-5 mx-2 font-bold">
                         Card details & Settings
                     </h1>
@@ -101,7 +101,7 @@ export default function Cards() {
                     </li>
                 </div>
 
-                <div className="w-1/2 m-10 rounded-lg p-5 shadow">
+                <div className="w-full md:w-1/2 m-10 rounded-lg p-5 shadow">
                     <h3 className="font-bold text-xl">
                         Card Transactions
                     </h3>

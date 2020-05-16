@@ -3,17 +3,17 @@ import React from 'react'
 export default function DashboardHome() {
     return (
         <div>
-            <div className="flex items-center justify-between w-full">
+            <div className="block md:flex items-center justify-between w-full ml-3 md:ml-0">
                 <div>
                     <h1 className="font-bold text-3xl"> Home</h1>
                     <p> Welcome back, Jonathan. </p>
                 </div>
-                <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white">
+                <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white mt-5 md:mt-0">
                     Fund Barter Balance
                 </button>
             </div>
-            <section className="flex items-start justify-between mt-10">
-                <div className="w-1/3">
+            <section className="flex items-start justify-between mt-10 flex-wrap md:flex-no-wrap">
+                <div className="md:w-1/3 w-full p-3 md:p-0">
                     <div className="shadow-xl rounded-lg px-5 py-2">
                         <p className="m-3"> YOUR BARTER BALANCE</p>
                         <p className="m-3 text-3xl"> ₦300.00 </p>
@@ -49,11 +49,11 @@ export default function DashboardHome() {
                     </div>
                 </div>
 
-                <div className="w-2/3 shadow-xl rounded-lg px-5 py-2 ml-10">
+                <div className="md:w-2/3 w-full shadow-xl rounded-lg px-10 py-2 m-5 md:ml-10 ">
                     <h3 className="font-bold text-xl mb-10">
                         Transactions
                     </h3>
-                    <img src="/images/no-transaction.svg" alt="no transaction" className=" m-auto p-10 no-transaction" />
+                    <img src="/images/no-transaction.svg" alt="no transaction" className=" m-10 w-full md:m-auto p-10 no-transaction" />
                 </div>
             </section>
         </div >
