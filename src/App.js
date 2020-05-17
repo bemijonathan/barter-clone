@@ -23,6 +23,7 @@ const App = () => {
       setShow(value)
     }
   }
+  
   const authentication = async () => {
      const token = await localStorage.getItem('auth-token')
     if(token){
