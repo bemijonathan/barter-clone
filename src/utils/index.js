@@ -19,9 +19,12 @@ export const SignUpValidation = Joi.object({
 
     lastName: Joi.string()
         .required(),
+    
+    phoneNumber: Joi.string()
+    .required()
+    .min(9),
 
-    country: Joi.string()
-        .uppercase()
-        .required()
+    refferalCode:Joi.string()
+    .allow(null, '')
 
 }).with('password', 'confirmPassword')

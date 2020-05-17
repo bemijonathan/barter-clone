@@ -20,11 +20,11 @@ export default function SideNav({ props }) {
             image: "transaction.svg",
             path: "/dashboard/transactions"
         },
-        {
-            path: "/dashboard/airtime",
-            image: "card.svg",
-            name: "Airtime"
-        },
+        // {
+        //     path: "/dashboard/airtime",
+        //     image: "card.svg",
+        //     name: "Airtime"
+        // },
         {
             name: "Settings",
             image: "setting.svg",

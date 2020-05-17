@@ -5,3 +5,7 @@ export const AirtimeContext = createContext({
     hide() { }
 })
 
+
+export const Authenticated = createContext({
+    isauthenticated:false
+})
