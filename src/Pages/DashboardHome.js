@@ -1,6 +1,28 @@
-import React from 'react'
+import React, {useState, useEffect, } from 'react'
+import axios from '../utils/axios'
 
 export default function DashboardHome() {
+
+    const token = localStorage.getItem('auth-token')
+
+    const [home, setHome] = useState({});
+
+    const Items = async () => {
+        try {
+            const {data} = await axios.get("/home", {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+        
+    }
+
+    useEffect(() => {
+        Items()
+    })
+    
     return (
         <div>
             <div className="block md:flex items-center justify-between w-full ml-3 md:ml-0">

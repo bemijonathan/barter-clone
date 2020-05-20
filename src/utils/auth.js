@@ -1,6 +1,6 @@
 import axios from "../utils/axios"
 import jwt from 'jsonwebtoken'
-
+// import xaxios from "axios"
     export async function newFunction(userDetails) {
         let { data } = await axios.post('auth/local/register', {
             username: `${userDetails.firstName} ${userDetails.lastName}`,
@@ -9,6 +9,16 @@ import jwt from 'jsonwebtoken'
         })
         console.log(data)
         localStorage.setItem("auth-token", data.jwt)
+        const wallet = await axios.post('/wallets')
+        console.log(wallet)
+
+        // Axios.post( 
+        //   'http://localhost:8000/api/v1/get_token_payloads',
+        //   bodyParameters,
+        //  {
+        //     headers: { Authorization: `Bearer ${token}` }
+        // }
+        // ).then(console.log).catch(console.log);
     }
 
     export function errorfunction(error) {
