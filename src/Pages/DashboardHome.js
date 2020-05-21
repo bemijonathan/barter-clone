@@ -1,34 +1,51 @@
 import React, {useState, useEffect, } from 'react'
-import axios, {requests} from '../utils/axios'
+import {requests} from '../utils/axios'
+import FundWallet from '../components/fundWallet';
 
 export default function DashboardHome() {
 
     const token = localStorage.getItem('auth-token')
 
-    const [home, setHome] = useState({});
+    const [home, setHome] = useState({
+        balance:{},
+        history:[]
+    });
 
-    const Items = async () => {
+    const [showfundwallet , setshowfundwallet] = useState(false) 
+
+    const getdata = async () => {
         try {
             const {data} = await requests.get("/home")
-            return data
+            console.log(data)
+            setHome({balance: data.data.balance, history:data.data.history})
         } catch (error) {
             console.log(error.message)
         }
     }
 
+
+    const close = (e) => {
+
+        e.stopPropagation()
+        let classes = e.target.classList
+        console.log(classes)
+        if (classes.contains("airtime")) {
+            setshowfundwallet(false)
+        }
+    }
+
     useEffect(() => {
-        console.log("runnning");
-        setHome(Items())
-    }, [home])
+        getdata()
+    },[token])
     
     return (
         <div>
             <div className="block md:flex items-center justify-between w-full ml-3 md:ml-0">
                 <div>
                     <h1 className="font-bold text-3xl"> Home</h1>
-                    <p> Welcome back, Jonathan. </p>
+                    <p> Welcome back, {home.balance?.user?.username}. </p>
                 </div>
-                <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white mt-5 md:mt-0">
+                <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white mt-5 md:mt-0" onClick={(e) => setshowfundwallet(true)}>
                     Fund Pi-coin Wallet
                 </button>
             </div>
@@ -36,7 +53,7 @@ export default function DashboardHome() {
                 <div className="md:w-1/3 w-full p-3 md:p-0">
                     <div className="shadow-xl rounded-lg px-5 py-2">
                         <p className="m-3"> YOUR PI-COIN BALANCE</p>
-                        {/* <p className="m-3 text-3xl"> { home?.wallet?.balance === 0 ? 0.00000 : home.wallet.balance } btc </p> */}
+                        <p className="m-3 text-3xl"> { +home.balance.balance === 0 ? '0.00000' : home.balance.balance } btc </p>
                         <p className="m-3 text-blue-700"> Fund Pi-coin Wallet</p>
                     </div>
                     <div className="shadow-xl rounded-lg px-5 py-2 mt-10">
@@ -58,10 +75,17 @@ export default function DashboardHome() {
 
                             </div>
                             <div className="text-sm">
-                                <p> TOTAL MONEY RECEIVED </p>
-                                <span className="text-blue-500 font-bold"> ₦ 0.00 </span>
-                                <p> TOTAL MONEY SPENT </p>
-                                <span className="text-red-500 font-bold"> ₦ 100.00 </span>
+                                {home.history.length ? 
+                                    home.history.map((history, i) => (
+                                        <div className="history" key="i"> 
+                                             <p> TOTAL MONEY RECEIVED </p>
+                                                <span className="text-blue-500 font-bold"> ₦ 0.00 </span>
+                                                <p> TOTAL MONEY SPENT </p>
+                                                <span className="text-red-500 font-bold"> ₦ 100.00 </span>
+                                        </div>
+                                    )) :  <p className="text-red w-2/3 m-auto text-center text-red-300 mb-10 ">You Currently Do not have any transaction </p>
+                                }
+                               
                             </div>
                         </div>
                         <p className="m-3 text-3xl">  </p>
@@ -74,9 +98,17 @@ export default function DashboardHome() {
                         Exchange Rates
                     </h3>
                     {/* <img src="/images/no-transaction.svg" alt="no transaction" className=" m-10 w-full md:m-auto p-10 no-transaction" /> */}
-                    <div className="btc-graph"><iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=light&cnt=7&pref_coin_id=1505&graph=yes" width="100%" height="468px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0"></iframe></div><div className></div>
+                    <div className="btc-graph">
+                        <iframe src="https://widget.coinlib.io/widget?type=full_v2&theme=light&cnt=7&pref_coin_id=1505&graph=yes" width="100%" height="468px" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0">
+                        </iframe>
+                    </div>
+                    <div className>
+                    </div>
                 </div>
             </section>
+           { showfundwallet? <div className="airtime fixed z-10 top-0 right-0 h-screen w-full bg-blue-600 bg-opacity-25 flex items-center justify-center" onClick={(e) => close(e)}>
+                <FundWallet/>
+            </div> : "" }
         </div >
     )
 }
