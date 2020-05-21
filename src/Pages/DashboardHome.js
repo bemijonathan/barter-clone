@@ -1,5 +1,5 @@
 import React, {useState, useEffect, } from 'react'
-import axios from '../utils/axios'
+import axios, {requests} from '../utils/axios'
 
 export default function DashboardHome() {
 
@@ -9,19 +9,17 @@ export default function DashboardHome() {
 
     const Items = async () => {
         try {
-            const {data} = await axios.get("/home", {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            console.log(data)
+            const {data} = await requests.get("/home")
+            return data
         } catch (error) {
-            console.log(error)
+            console.log(error.message)
         }
-        
     }
 
     useEffect(() => {
-        Items()
-    })
+        console.log("runnning");
+        setHome(Items())
+    }, [home])
     
     return (
         <div>
@@ -38,7 +36,7 @@ export default function DashboardHome() {
                 <div className="md:w-1/3 w-full p-3 md:p-0">
                     <div className="shadow-xl rounded-lg px-5 py-2">
                         <p className="m-3"> YOUR PI-COIN BALANCE</p>
-                        <p className="m-3 text-3xl"> 0.012303 btc </p>
+                        {/* <p className="m-3 text-3xl"> { home?.wallet?.balance === 0 ? 0.00000 : home.wallet.balance } btc </p> */}
                         <p className="m-3 text-blue-700"> Fund Pi-coin Wallet</p>
                     </div>
                     <div className="shadow-xl rounded-lg px-5 py-2 mt-10">
