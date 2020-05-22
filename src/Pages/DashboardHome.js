@@ -106,7 +106,7 @@ export default function DashboardHome() {
                     </div>
                 </div>
             </section>
-           { showfundwallet? <div className="airtime fixed z-10 top-0 right-0 h-screen w-full bg-blue-600 bg-opacity-25 flex items-center justify-center" onClick={(e) => close(e)}>
+           { showfundwallet? <div className="airtime overflow- fixed z-10 top-0 right-0 h-screen w-full bg-blue-600 bg-opacity-25 flex items-center justify-center" onClick={(e) => close(e)}>
                 <FundWallet/>
             </div> : "" }
         </div >
