@@ -27,7 +27,7 @@ export default function FundWallet(props) {
   };
   return (
     <>
-      <div className="md:flex-no-wrap flex-wrap flex w-3/5 bg-white tilt-in-fwd-tr p-3 -m-5">
+      <div className="md:flex-no-wrap flex-wrap flex w-4/5 md:w-3/5 bg-white tilt-in-fwd-tr p-3 -m-5">
         <div className="w-full md:w-1/2 m-5">
           <form onSubmit={(e) => Submit(e)}>
             <div>
