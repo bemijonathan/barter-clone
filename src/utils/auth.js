@@ -7,18 +7,8 @@ import jwt from 'jsonwebtoken'
             email: userDetails.email,
             password: userDetails.password
         })
-        console.log(data)
         localStorage.setItem("auth-token", data.jwt)
-        const wallet = await axios.post('/wallets')
-        console.log(wallet)
-
-        // Axios.post( 
-        //   'http://localhost:8000/api/v1/get_token_payloads',
-        //   bodyParameters,
-        //  {
-        //     headers: { Authorization: `Bearer ${token}` }
-        // }
-        // ).then(console.log).catch(console.log);
+        await axios.post('/wallets',{ headers: { Authorization: `Bearer ${data.jwt}` } })
     }
 
     export function errorfunction(error) {
