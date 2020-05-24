@@ -2,6 +2,13 @@
   background: rgba(255, 12, 12, 0.3) !important;
 }
 
+.balance {
+  background-image: url('/images/btc.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 body {
   width: 100vw;
   overflow-x: hidden;
