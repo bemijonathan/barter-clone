@@ -1,14 +1,27 @@
-import axios from "../utils/axios"
+import {instance} from "../utils/axios"
 import jwt from 'jsonwebtoken'
 // import xaxios from "axios"
     export async function newFunction(userDetails) {
-        let { data } = await axios.post('auth/local/register', {
+      try {
+        let { data } = await instance.post('auth/local/register', {
             username: `${userDetails.firstName} ${userDetails.lastName}`,
             email: userDetails.email,
             password: userDetails.password
         })
-        localStorage.setItem("auth-token", data.jwt)
-        await axios.post('/wallets',{ headers: { Authorization: `Bearer ${data.jwt}` } })
+        console.log(data.jwt, "refused")
+
+        localStorage.clear()
+
+        await localStorage.setItem("auth-token", data.jwt)
+
+        return data.jwt
+       
+      } catch (error) {
+        console.log(error.message)
+        let err = error.response.data.message[0].messages[0].message
+        throw new Error(err)
+      }
+        
     }
 
     export function errorfunction(error) {

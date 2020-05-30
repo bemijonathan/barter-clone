@@ -20,6 +20,8 @@ const App = () => {
     }
   }
 
+  const token = localStorage.getItem("auth-token")
+
   const ProtectedRoute = ({ component: Component, ...rest }) => {
     return ( authentication() ? <Component {...rest} /> : <Redirect from="" to="/" noThrow />)
   }

@@ -21,7 +21,7 @@ export default function DashboardHome() {
     try {
       const { data } = await requests.get("/home");
       console.log(data);
-      setHome({ balance: data.data.balance, history: data.data.history });
+      setHome({ balance: data.data.wallet, history: data.data.history });
     } catch (error) {
       console.log(error.message);
     }
@@ -37,21 +37,24 @@ export default function DashboardHome() {
   };
 
   useEffect(() => {
-    chart.mount("#widget");
+    
     getdata();
-  }, [token]);
+  }, [token, showfundwallet]);
+
+  useEffect(() => {
+    chart.mount("#widget");
+  }, [token])
 
   return (
     <div>
       
       <div className="block md:flex items-center justify-between w-full p-5 md:ml-0">
         <div>
-          <h1 className="font-bold text-3xl"> Home</h1>
-          <p className="my-3"> Welcome back, </p>
-          <p className="my-3"> {home.balance?.user?.username}. </p>
+          <h1 className="font-bold text-3xl">  {home.balance.user?.username}.</h1>
+          <p className="my-3"> Welcome back </p>
         </div>
         <button
-          className="bg-blue-500 w-full px-4 py-3 text-xs font-bold rounded-lg text-white mt-5 md:mt-0"
+          className="bg-blue-500 w-full md:w-auto px-4 py-3 text-xs font-bold rounded-lg text-white mt-5 md:mt-0"
           onClick={() => setshowfundwallet(true)}
         >
           Fund Pi-coin Wallet
@@ -66,15 +69,16 @@ export default function DashboardHome() {
               {" "}
               {+home.balance.balance === 0
                 ? "0.00000"
-                : home.balance.balance}{" "}
-              btc{" "}
+                : home.balance.balance}
+                {" "}
+         {" "}
             </p>
-            <p className="m-3 text-black bg-white p-3 rounded "> Fund Pi-coin Wallet</p>
+            <p className="m-3 text-black bg-white p-3 rounded " onClick={() => setshowfundwallet(true)}> Fund Pi-coin Wallet</p>
           </div>
-          <div id="widget" className="shadow my-5" style={{height:'400px'}}></div>
+          
           <div className="shadow md:shadow-xl rounded-lg px-5 py-2 mt-10">
             <div className="m-3  flex justify-between items-center">
-              <p className="text-xl"> Spendings </p>
+              <p className="text-sm font-bold"> All Transactions </p>
               <div>
                 <select className="bg-white p-2 text-xs">
                   <option value=""> Today </option>
@@ -86,15 +90,13 @@ export default function DashboardHome() {
               </div>
             </div>
             <div className="m-3 flex justify-between items-center mt-10">
-              <div className="chart"></div>
               <div className="text-sm">
                 {home.history.length ? (
                   home.history.map((history, i) => (
-                    <div className="history" key="i">
-                      <p> TOTAL MONEY RECEIVED </p>
-                      <span className="text-blue-500 font-bold"> ₦ 0.00 </span>
-                      <p> TOTAL MONEY SPENT </p>
-                      <span className="text-red-500 font-bold"> ₦ 100.00 </span>
+                    <div key={i}>
+                      <p className={`font-bold ${history.status? "text-blue-500" : "text-red-500"}`}>
+                       {history.status?"paid : " : "unpaid : "} {history.btc}
+                      </p>
                     </div>
                   ))
                 ) : (
@@ -105,8 +107,9 @@ export default function DashboardHome() {
               </div>
             </div>
             <p className="m-3 text-3xl"> </p>
-            <p className="m-3 text-blue-700"> Fund Pi-coin Wallet </p>
+            <p className="m-3 text-blue-700 cursor-pointer " onClick={() => setshowfundwallet(true)}> Fund Pi-coin Wallet </p>
           </div>
+          <div id="widget" className="shadow my-5" style={{height:'400px'}}></div>
         </div>
 
         <div className="md:w-2/3 w-full shadow-xs md:shadow-xl rounded-lg px-5 md:p-10 py-2 m-5 md:ml-10 ">

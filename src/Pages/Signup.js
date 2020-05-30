@@ -4,6 +4,7 @@ import { SignUpValidation } from "../utils";
 import "../App.css";
 import { navigate } from "@reach/router";
 import { newFunction, errorfunction } from "../utils/auth";
+import {instance} from "../utils/axios"
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 
@@ -55,15 +56,20 @@ export default function Login() {
         ...Errors
     })
     } else {
-      console.log("im running");
       try {
-        await newFunction(userDetails);
+        const jwt = await newFunction(userDetails);
+        const response = await instance.post('/wallets',{}, { headers: { Authorization: `Bearer ${jwt}` } })
+        console.log(response)
+        debugger 
         NotificationManager.success('Welcome to Pi-coin', 'Sign Up successful')
         navigate("/dashboard");
       } catch (e) {
-        e.response.data.message[0].messages.forEach(element => {
-            NotificationManager.error(element.message, 'Error Creating Account')
-        })
+        console.log(e.message)
+        if (e.message.split(" ").includes("already")){
+          NotificationManager.error('unable to create account', e.message)
+        }else{
+          NotificationManager.error('unable to create accounts', 'Error Creating Account')
+        }
       }
     }
     console.log(errors);
@@ -88,7 +94,6 @@ export default function Login() {
               <input
                 type="text"
                 name="firstName"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.firstName
@@ -103,7 +108,6 @@ export default function Login() {
               <input
                 type="text"
                 name="lastName"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.lastName
@@ -118,7 +122,6 @@ export default function Login() {
               <input
                 type="email"
                 name="email"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.email
@@ -133,7 +136,6 @@ export default function Login() {
               <input
                 type="tel"
                 name="phoneNumber"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.phoneNumber
@@ -148,7 +150,6 @@ export default function Login() {
               <input
                 type="password"
                 name="password"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.password
@@ -165,7 +166,6 @@ export default function Login() {
               <input
                 type="password"
                 name="confirmPassword"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5 
                                     ${
                                       errors.confirmPassword
@@ -182,7 +182,6 @@ export default function Login() {
               <input
                 type="referral"
                 name="referral"
-                id=""
                 className={`w-full p-2 bg-blue-100 rounded mt-3 mb-5`}
                 onChange={(e) => updateForm(e)}
               />

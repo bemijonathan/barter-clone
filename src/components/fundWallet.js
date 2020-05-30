@@ -69,32 +69,27 @@ export default function FundWallet(props) {
                 </button>
               </form>
             ) : (
-              <div className="text-sm">
-                <p> BTC ADDRES: <span id="copy">{btcAddressDetails.pay_address} </span> </p>
+              <div className="text-sm border shadow rounded p-2">
+                <p className="my-2"> BTC ADDRES: <span id="copy">{btcAddressDetails.pay_address} </span> </p>
                 <button
-                  className="p-2 bg-blue-600 text-white"
+                  className="p-2 bg-blue-600 text-white w-1/2 rounded m-auto"
                   onClick={(e) => copy(e)}
                 >
                   Copy
                 </button>
-                <p> BTC Amount: {btcAddressDetails.coin_amount} </p>
-                <p>BTC Details: {btcAddressDetails.price_amount} </p>
+                <p className="my-2"> BTC Amount: {btcAddressDetails.coin_amount} </p>
+                <p className="my-2">BTC Details: {btcAddressDetails.price_amount} </p>
               </div>
             )}
 
             {/* 
     {"pay_within": 8} */}
           </div>
-          <div className="md:w-1/2 p-5 w-full">
-            <h1>
-              Convert Dollars to Btc
-              <coin-ponent
-                dark-mode
-                shadow="md"
-                border-radius="8"
-                font="monospace"
-              ></coin-ponent>
+          <div className="md:w-1/2 p-5">
+            <h1 class="font-bold text-xl text-center mb-5">
+              Convert Btc to Dollars
             </h1>
+            <coin-ponent dark-mode fixed-token fixed-fiat shadow="md"></coin-ponent>
           </div>
         </div>
       </div>

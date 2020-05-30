@@ -22,7 +22,7 @@ export default function Navbar() {
     <Link to="/" className=" text-white font-bold ">Logo</Link>
     </div>
 
-    <nav className=" bg-blue-500 p-6 shadow-lg hidden fixed top-0 w-2/3 fixed md:block md:w-full h-screen md:h-auto ">
+    <nav className=" bg-blue-500 p-4 shadow-lg hidden fixed top-0 w-2/3 fixed md:block md:w-full h-screen md:h-auto ">
         <div className=" md:flex items-center container m-auto md:justify-between md:flex-wrap">
           <div className="">
             <Link to="/" className="text-3xl text-white">

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, navigate } from '@reach/router'
-import axios from './../utils/axios'
+import {instance as axios} from './../utils/axios'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 

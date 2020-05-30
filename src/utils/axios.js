@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseURL = "https://b-clone.herokuapp.com/"
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL
 });
 
@@ -14,6 +14,5 @@ export const requests = axios.create(
     { baseURL, headers: { Authorization : `Bearer ${token}` } }
 )
 
-export default instance;
 
 

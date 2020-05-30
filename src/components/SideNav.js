@@ -57,16 +57,19 @@ export default function SideNav({ props }) {
         return navItems.map((e, i) => {
             return (
                 <div key={i}>
-                    {i === 3 ?
-                        <div className="mb-4 py-3 px-5 rounded-lg cursor-pointer" onClick={() => props.hide(true)}>
-                            <img src={'/images/' + e.image} alt="home" className="inline mr-3" /> {e.name}
-                        </div>
+                    {
+                        // i === 3 ?
+                        // <div className="mb-4 py-3 px-5 rounded-lg cursor-pointer" onClick={() => props.hide(true)}>
+                        //     <img src={'/images/' + e.image} alt="home" className="inline mr-3" /> {e.name}
+                        // </div>
 
-                        : <NavLink to={e.path}>
+                        // :
+                         <NavLink to={e.path}>
                             <div className="mb-4 py-3 px-5 rounded-lg">
                                 <img src={'/images/' + e.image} alt="home" className="inline mr-3" /> {e.name}
                             </div>
-                        </NavLink>}
+                        </NavLink>
+                    }
                 </div>
             )
         })
