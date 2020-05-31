@@ -35,8 +35,8 @@ import jwt from 'jsonwebtoken'
     }
 
 
-    export const authentication = async () => {
-       const token = await localStorage.getItem('auth-token')
+    export const authentication = () => {
+       const token = localStorage.getItem('auth-token')
        if(token){
          const user = jwt.decode(token)
          console.log(user)

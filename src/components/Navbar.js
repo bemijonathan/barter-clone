@@ -17,10 +17,11 @@ export default function Navbar() {
   }
   return (
     <>
-    <div className="bg-blue-500 py-3 px-5 block left-0 md:hidden flex items-center justify-between w-full top-0"> 
+    <div className="bg-blue-500 py-3 px-5 block left-0 md:hidden flex fixed w-full items-center justify-between w-full top-0"> 
     <button onClick={() => setShow(true)} className="text-white border font-bold p-2 rounded"> Menu </button>
-    <Link to="/" className=" text-white font-bold ">Logo</Link>
+    <Link to="/" className=" text-white font-bold ">Pi-coin</Link>
     </div>
+    <div className="md:hidden mt-20"></div>
 
     <nav className=" bg-blue-500 p-4 shadow-lg hidden fixed top-0 w-2/3 fixed md:block md:w-full h-screen md:h-auto ">
         <div className=" md:flex items-center container m-auto md:justify-between md:flex-wrap">

@@ -16,15 +16,10 @@ export default function SideNav({ props }) {
             name: "wallet"
         },
         {
-            name: "Transactions",
+            name: "Withdraw",
             image: "transaction.svg",
-            path: "/dashboard/transactions"
+            path: "/dashboard/withdraw"
         },
-        // {
-        //     path: "/dashboard/airtime",
-        //     image: "card.svg",
-        //     name: "Airtime"
-        // },
         {
             name: "Settings",
             image: "setting.svg",

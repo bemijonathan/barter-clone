@@ -1,6 +1,17 @@
 import React from 'react'
+import { requests } from "../utils/axios"
 
 export default function Transactions() {
+
+
+    const Wallet = async () => {
+        try{
+            const {data} = await requests.get('/wallets');
+            console.log(data)
+        }catch(error){
+            console.log(error.message)
+        }
+    }
     return (
         <div className="shadow md:w-1/2 md:m-auto p-3 m-2 rounded-lg">
             <h1 className="mb-10">

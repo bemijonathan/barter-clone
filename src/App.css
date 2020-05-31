@@ -38,7 +38,7 @@ button:disabled{
 
 .atm-card {
   max-width: 350px;
-  height: 206px;
+  /*height: 206px;*/
   width: 100%;
 }
 

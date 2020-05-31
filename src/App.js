@@ -5,7 +5,7 @@ import Signup from './Pages/Signup';
 import DashboardHome from './Pages/DashboardHome';
 import Dashboard from './Pages/Dashboard';
 import Cards from './Pages/Cards'
-import Transactions from './Pages/Transactions';
+import Withdraw from './Pages/Withdraw';
 import { AirtimeContext } from './context/airtimeContext';
 import 'react-notifications/lib/notifications.css';
 import {authentication} from './utils/auth';
@@ -20,10 +20,13 @@ const App = () => {
     }
   }
 
-  const token = localStorage.getItem("auth-token")
+  const [authenticated] = React.useState(authentication())
+
 
   const ProtectedRoute = ({ component: Component, ...rest }) => {
-    return ( authentication() ? <Component {...rest} /> : <Redirect from="" to="/" noThrow />)
+    return ( 
+         authenticated ? <Component {...rest} /> : <Redirect from="" to="/" noThrow />
+    )
   }
 
   return (
@@ -33,7 +36,7 @@ const App = () => {
           <ProtectedRoute path="dashboard" component={Dashboard} >
             <DashboardHome path="/" />
             <Cards path="/cards" />
-            <Transactions path="/transactions" />
+            <Withdraw path="/withdraw" />
           </ProtectedRoute>
           <Login path="/" />
           <Signup path="/signup" />
