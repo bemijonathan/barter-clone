@@ -14,6 +14,8 @@ import jwt from 'jsonwebtoken'
 
         await localStorage.setItem("auth-token", data.jwt)
 
+        debugger
+
         return data.jwt
        
       } catch (error) {
@@ -34,9 +36,10 @@ import jwt from 'jsonwebtoken'
 
 
     export const authentication = async () => {
-        const token = await localStorage.getItem('auth-token')
+       const token = await localStorage.getItem('auth-token')
        if(token){
          const user = jwt.decode(token)
+         console.log(user)
          if(Math.floor(Date.now() / 1000) + (60 * 60) < user.exp){
            return true
          }else{

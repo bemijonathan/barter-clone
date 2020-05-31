@@ -34,7 +34,7 @@ export default function Navbar() {
           </div>
           <div className="md:block hidden">
             <img src="/images/bell.svg" alt="notification" className="inline" />
-            <Link to="#" className="px-4 py-2 leading-none text-white fort-bold ">Jonathan</Link>
+            <Link to="#" className="px-4 py-2 leading-none text-white font-bold ">Jonathan</Link>
           </div>
         </div>
       </nav>

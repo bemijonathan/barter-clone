@@ -15,6 +15,7 @@ export default function FundWallet(props) {
     setLoading(true);
     console.log("running", BTC);
     if (+BTC > 0) {
+      
       try {
         const { data } = await requests.post("/donations", {
           amount: BTC,
@@ -52,7 +53,7 @@ export default function FundWallet(props) {
             {!showaddress ? (
               <form onSubmit={(e) => Submit(e)}>
                 <div>
-                  <label htmlFor="price">Amount In Dollars</label>
+                  <label htmlFor="price">Amount In BTC</label>
                   <input
                     className="p-3 my-3 bg-blue-500 rounded w-full text-white"
                     type="number"

@@ -1,88 +1,87 @@
 import React, { useState } from "react";
+import { requests } from "../utils/axios"
 
 export default function Cards() {
-  const [cardDetails] = useState([
-    {
-      name: "Jonathan Atiene",
-      cardNumber: "2435 4577 6854 9977",
-      currentBalance: "4,000,000",
-      validthru: "04/32",
-      cvv: 266,
-      billing: "34 Tower Street, Lagos, NG",
-      zipcode: 234001,
-      freezecard: false,
-      type: "Local",
-      img:"eth.svg"
-    },
-    {
-      name: "Jonathan B Atiene",
-      cardNumber: "2435 4577 6854 8877",
-      currentBalance: "4,000",
-      validthru: "04/32",
-      cvv: "253",
-      billing: "34 Tower Street, San Francisco, CA",
-      zipcode: 94103,
-      freezecard: false,
-      type: "Dollar",
-      img:"btc.svg"
-    },
-  ]);
+  const [cardDetails, setCardDetails] = useState({});
+
+  const [history, setHistory] = useState([])
+
+  const getWallet = async() => {
+    try{
+     const response = await requests.get('/wallets')
+    setCardDetails(response.data)
+    } catch(error){
+      console.log(error.response)
+    }
+  }
+
+  const getTransactions = async () => {
+      try{
+     const {data} = await requests.get('/donations')
+     setHistory(data)
+    } catch(error){
+      console.log(error.response)
+    }
+  } 
+
+  const T = 0
+  React.useEffect(() => {
+    getWallet()
+    getTransactions()
+  }, [T])
 
   const [current, setCurrent] = useState(0);
 
-  const cardList = cardDetails.map((e, i) => {
+  const cardList = (e = cardDetails ) => {
     return (
       <div
-        key={i}
         className={`md:mr-10 mb-3 md:mb-0 atm-card p-5 rounded-lg shadow-2xl text-white cursor-pointer
-                    ${e.type === "Dollar" ? "bg-blue-600":  "bg-yellow-600" }`}
-        onClick={() => setCurrent(i)}
+          ${e.type === "Dollar" ? "bg-blue-600":  "bg-gray-700" }`
+        }
       >
-        <p> {e.name} </p>
+        <p className="font-bold text-xl"> {e.name} </p>
         <div className="flex justify-between items-center ">
-        <p className="my-6 __cardnumber"> {e.cardNumber} </p> < p> <img src={'/images/'+e.img} /> </p>
+        <p className="my-6 __cardnumber font-bold"> {e.cardNumber} </p> 
+        <p> { e.img? <img src={'/images/'+e.img} width="50"/> : ""} </p>
         </div>
         <div className="flex justify-between items-between">
           <div>
-            <p className="text-xs">CURRENT BALANCE</p>
-            <p>
-              {e.type === "Dollar" ? "Btc" : "Eth"} {e.currentBalance}{" "}
+            <p className="text-xs font-bold">CURRENT BALANCE</p>
+            <p className="font-bold">
+              {e.type === "Dollar" ? "$" : "btc"} {e.currentBalance}{" "}
             </p>
           </div>
           <div>
-            <p className="text-xs">VALID THRU</p>
+            <p className="text-xs font-bold">VALID THRU</p>
             <p>{e.validthru}</p>
           </div>
         </div>
       </div>
     );
-  });
+  }
 
   return (
     <div>
-      <div className="flex items-center justify-between w-full flex-wrap p-5 md:p-0">
+      <div className="flex items-center justify-between w-full flex-wrap py-3 px-5 md:p-0">
         <div>
-          <h1 className="font-bold text-3xl"> Cards </h1>
-          <p className="text-xl" style={{ maxWidth: "700px" }}>
-            {" "}
-            Just like you would your regular cards, you can pay for your
-            shopping online with your Barter card.
+          <h1 className="font-bold text-3xl mb-2">
+            Cards 
+          </h1>
+          <p className="text-sm" style={{ maxWidth: "700px" }}>
           </p>
         </div>
-        <button className="bg-blue-300 px-4 py-2 text-xs font-bold rounded-lg text-white">
-          {" "}
-          Create New Card
+        <button className="bg-blue-600 py-2 px-5 text-white rounded shadow"> 
+          Withdraw
         </button>
       </div>
-
       <div>
-        <div className="flex my-10 flex-wrap p-5 md:p-0">{cardList}</div>
+        <div className="flex my-5 flex-wrap p-5 md:p-0">{cardList}</div>
       </div>
 
-      <section className="flex mt-5 -mx-10 items-start flex-wrap md:flex-no-wrap">
+      <section className="flex mt-5 -mx-10 items-start flex-wrap md:flex-no-wrap p-5 md:p-0">
         <div className="list-none w-full md:w-1/2 shadow p-5 rounded-lg m-10">
-          <h1 className="text-2xl my-5 mx-2 font-bold">
-            History
+          <h1 className="text-2xl text-center my-5 mx-2 font-bold">
+            Withdrawal, Mining &  Deposits
           </h1>
           <li className="mb-5 text-sm border-b-2 ">
             <p className="font-bold m-2"> Withdraw </p>

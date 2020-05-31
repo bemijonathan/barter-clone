@@ -37,9 +37,16 @@ button:disabled{
 }
 
 .atm-card {
-  max-width: 300px;
-  /* height: 165px; */
+  max-width: 350px;
+  height: 206px;
   width: 100%;
+}
+
+@media screen and (max-width:500px){
+  .atm-card {
+    max-width:100% ; 
+    width: 100%;
+  }
 }
 
 .__cardnumber {
@@ -52,12 +59,12 @@ button:disabled{
 }
 @keyframes rotate-in-2-bl-cw {
   0% {
-    transform: rotate(-45deg);
+    transform: translateX(-100px);
     transform-origin: 0 100%;
     opacity: 0;
   }
   100% {
-    transform: rotate(0);
+    transform: translateX(0);
     transform-origin: 0 100%;
     opacity: 1;
   }

@@ -59,10 +59,9 @@ export default function Login() {
       try {
         const jwt = await newFunction(userDetails);
         const response = await instance.post('/wallets',{}, { headers: { Authorization: `Bearer ${jwt}` } })
-        console.log(response)
-        debugger 
+        console.log(response) 
         NotificationManager.success('Welcome to Pi-coin', 'Sign Up successful')
-        navigate("/dashboard");
+        window.location.assign("/dashboard");
       } catch (e) {
         console.log(e.message)
         if (e.message.split(" ").includes("already")){
