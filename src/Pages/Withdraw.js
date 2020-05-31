@@ -15,7 +15,7 @@ export default function Transactions() {
 
     const [amount, setAmount] = React.useState(0)
 
-    const [verified, setVerified] = Reat.useState(false)
+    const [verified, setVerified] = React.useState(false)
 
     return (
         <div className="shadow md:w-1/2 md:m-auto p-3 m-2 rounded-lg">
