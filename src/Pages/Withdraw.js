@@ -12,12 +12,17 @@ export default function Transactions() {
             console.log(error.message)
         }
     }
+
+    const [amount, setAmount] = React.useState(0)
+
+    const [verified, setVerified] = Reat.useState(false)
+
     return (
         <div className="shadow md:w-1/2 md:m-auto p-3 m-2 rounded-lg">
             <h1 className="mb-10">
-                All Transactions
+                WithDraw Coins
             </h1>
-            <div>
+            {/*<div>
                 <li className="list-none">
                     <date> 7th May 2020 </date> <br />
                     <div className="flex mt-3 items-center">
@@ -35,7 +40,7 @@ export default function Transactions() {
                         </div>
                     </div>
                 </li>
-            </div>
+            </div>*/}
         </div>
     )
 }
