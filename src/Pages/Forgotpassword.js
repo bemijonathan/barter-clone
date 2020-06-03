@@ -54,7 +54,7 @@ const Forgotpassword = () => {
             </button>
 
             <div className="mt-5">
-              Don't have an account?{" "}
+              {" Don\'t have an account? "}
               <Link to="/signup" className="text-blue-400">
                 {" "}
                 Register{" "}

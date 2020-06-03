@@ -4,6 +4,6 @@
 
 @tailwind utilities;
 
-.error-bg{
-    background: rgba(255, 0, 0, 0.479) !important;
+.error-bg {
+	background: rgba(255, 0, 0, 0.479) !important;
 }

@@ -1,46 +1,52 @@
-import React from 'react'
-import { requests } from "../utils/axios"
+import React from "react";
+import { requests } from "../utils/axios";
 
 export default function Transactions() {
-
-
     const Wallet = async () => {
-        try{
-            const {data} = await requests.get('/wallets');
-            console.log(data)
-        }catch(error){
-            console.log(error.message)
+        try {
+            const { data } = await requests.get("/wallets");
+            console.log(data.balance);
+            return data.balance;
+        } catch (error) {
+            console.log(error.message);
         }
-    }
+    };
 
-    const [amount, setAmount] = React.useState(0)
+    const [amount, setAmount] = React.useState(0);
 
-    const [verified, setVerified] = React.useState(false)
+    const [verified, setVerified] = React.useState(false);
+
+    React.useEffect(() => {
+        console.log("hello i didnt loop");
+        Wallet().then(setAmount);
+    }, [amount]);
 
     return (
-        <div className="shadow md:w-1/2 md:m-auto p-3 m-2 rounded-lg">
-            <h1 className="mb-10">
+        <div className="shadow md:w-1/2 md:mx-auto p-5 m-2 rounded-lg">
+            {/*<div className="text-2xl text-center w-5/6 text-bold bg-blue-500 text-white -mt-10 mx-auto rounded-lg py-3">
+                <p>Wallet Balance</p>
+                <p>{amount === 0 ? "0.0000" : amount} </p>
+            </div>*/}
+            <h1 className="mb-5 text-2xl text-center text-bold my-3">
                 WithDraw Coins
             </h1>
-            {/*<div>
-                <li className="list-none">
-                    <date> 7th May 2020 </date> <br />
-                    <div className="flex mt-3 items-center">
-                        <div className="rounded-full p-4 bg-blue-400 text-white">
-                            <b> MT  </b>
-                        </div>
-                        <div className="flex w-full ml-5 md:justify-between items-start md:flex-no-wrap flex-wrap  ">
-                            <div className="w-full">
-                                <b> Mtn </b> <b />
-                                <p> Airtime </p>
-                            </div>
-                            <div>
-                                ₦100.00
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </div>*/}
+
+            <div>
+                <label htmlFor="email">AMOUNT</label>
+                <input
+                    type="email"
+                    name="email"
+                    id=""
+                    className=" border w-full p-2 rounded mt-3 mb-5"
+                />
+                <p className="text-xs text-blue-600">
+                    {amount === 0 ? "0.0000" : amount}{" "}
+                </p>
+            </div>
+            <button className="text-sm text-bold bg-blue-400 p-2 w-full ">
+                {" "}
+                Submit{" "}
+            </button>
         </div>
-    )
+    );
 }
